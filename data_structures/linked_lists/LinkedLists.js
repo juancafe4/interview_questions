@@ -5,7 +5,8 @@ class Node {
   }
 }
 
-export default class LimkedList {
+
+module.exports = class LimkedList {
   constructor() {
     this.head = null;
   }
@@ -20,10 +21,35 @@ export default class LimkedList {
       while (temp.next) {
         temp = temp.next;
       }
-      temp = newNode;
+
+      temp.next = newNode;
+    }
+  }
+
+  deleteNode(data) {
+    if (this.head) {
+      if (this.head.data === data) {
+        this.head = this.head.next;
+      } else {
+        let temp = this.head;
+        while (temp.next) {
+          if (temp.next.data === data) {
+            temp.next = temp.next.next
+            break;
+          }
+          temp = temp.next
+        }
+      }
     }
   }
   print() {
-    return head.toString();
+    let arr = [];
+    let curr = this.head
+    while (curr) {
+      arr.push(curr.data);
+      curr = curr.next;
+    }
+
+    return arr;
   }
 }
