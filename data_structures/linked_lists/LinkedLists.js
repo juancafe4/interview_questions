@@ -52,4 +52,14 @@ module.exports = class LimkedList {
 
     return arr;
   }
+  length() {
+    let ct = 0;
+    let curr = this.head
+    while (curr) {
+      ct++
+      curr = curr.next;
+    }
+
+    return ct;
+  }
 }
