@@ -1,5 +1,11 @@
 const LinkedList = require('./LinkedLists');
 
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
 let list = new LinkedList();
 
 list.addNode(1);
@@ -46,27 +52,65 @@ list4.addNode(2);
 console.log(palindrome(list4.head, list4.length()))
 
 function palindrome(head, len) {
-  if (!head || !head.next) {
-    return false;
+  let mid = Math.floor(len / 2)
+  let node = head;
+
+  for (let i = 0; i < mid; i++) {
+    node = node.next
   }
 
-  let mid = Math.floor(len / 2);
-  let i = 0;
-  let curr = head;
-  while (i < mid) {
-    let tail = curr;
-    while (tail.next && tail.next.next) {
-      tail = tail.next;
-    }
-
-    if (tail.next.data !== curr.data) {
-      return false;
-    }
-    tail.next = null;
-    curr = curr.next;
-    
-    i++;
+  if (len % 2) {
+    node = node.next;
   }
-
+  let tail = null;
+  while (node) {
+    tail = reverse(tail, node.data);
+    node = node.next;
+  }
+  curr = head;
+  for (let i = 0; i < mid; i++) {
+    if (curr.data !== tail.data) {
+      return false
+    }
+    curr = curr.next
+    tail = tail.next;
+  }
   return true;
+//O(N^2) solution
+//   if (!head || !head.next) {
+//     return false;
+//   }
+
+//   let mid = Math.floor(len / 2);
+//   let i = 0;
+//   let curr = head;
+//   while (i < mid) {
+//     let tail = curr;
+//     while (tail.next && tail.next.next) {
+//       tail = tail.next;
+//     }
+
+//     if (tail.next.data !== curr.data) {
+//       return false;
+//     }
+//     tail.next = null;
+//     curr = curr.next;
+    
+//     i++;
+//   }
+
+//   return true;
 }
+
+function reverse(tail, data) {
+  let node = new Node(data)
+  if (tail === null) {
+    tail = node
+  } else {
+    node.next = tail;
+    tail = node;
+  }
+  return tail;
+}
+
+
