@@ -47,7 +47,7 @@ function isCircular(node) {
       break;
     }
   }
-
+  console.log('p2 node', p2)
   if (!p1 || p1 !== p2) {
     return null;
   }
