@@ -1,3 +1,7 @@
+// Runtime at popAt() is O(N) length of stacks is constant
+// but to run for every item in the stack is O(N)
+// Space O(M) size of the satck
+
 class StackOfStacks {
   constructor(capacity) {
     if (arguments.length < 1) {
