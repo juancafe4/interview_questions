@@ -2,13 +2,13 @@ class Node {
   constructor(data) {
     this.data = data;
     this.next = null;
+    this.min = null
   }
 }
 
 class Stack {
   constructor() {
     this.top = null;
-    this.min = null;
   }
 
   pop() {
@@ -17,21 +17,20 @@ class Stack {
     }
     let data = this.top.data;
     this.top = this.top.next;
-    let actualData = this.top;
-    if (this.min >= actualData) {
-      this.min == actualData
-    }
     return data;
   }
   push(data) {
     let node = new Node(data);
-    if (!this.min || this.min >= data) {
-      this.min = data;
+    if (!this.top) {
+      this.top = node;
+      this.top.min = data
+    } else {
+      let min = Math.min(this.top.min, data);
+      node.next = this.top;
+      this.top = node;
+      this.top.min = min;
     }
-    node.next = this.top;
-    this.top = node;
   }
-
   peek() {
     if (this.top === null) {
       throw new Error("Stack is Empty");
@@ -42,7 +41,7 @@ class Stack {
     return this.top == null;
   }
   getMin() {
-    return this.min;
+    return this.top.min;
   }
 }
 
@@ -54,5 +53,9 @@ stack.push(11);
 stack.push(3);
 stack.push(5);
 stack.push(6);
-stack.push(-34);
+stack.push(34);
+stack.push(1)
+stack.push(-43)
+stack.pop()
+stack.push(Number.MIN_VALUE);
 console.log(stack.getMin())
