@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-class Queue {
+module.exports = class Queue {
   constructor() {
     this.first = null;
     this.last = null;  
@@ -28,7 +28,7 @@ class Queue {
     if (this.first === null) {
       throw new Error("Queue is empty")
     }
-    let data = first.data;
+    let data = this.first.data;
     this.first = this.first.next;
     if (this.first === null) {
       this.last = this.first;
