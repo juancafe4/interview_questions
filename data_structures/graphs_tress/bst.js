@@ -1,6 +1,6 @@
 class Node {
   constructor(data) {
-   
+
     if (isNaN(data)) {
       throw new Error('Data must be a Number');
     }
@@ -64,5 +64,12 @@ module.exports = class BinaryTree {
       this.postorder(node.right);
       console.log(node.data);
     }
+  }
+
+  height(node) {
+    if (node === null) {
+      return 0;
+    }
+    return 1 + Math.max(this.height(node.left), this.height(node.right));
   }
 }
