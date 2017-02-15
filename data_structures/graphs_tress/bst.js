@@ -68,8 +68,22 @@ module.exports = class BinaryTree {
 
   height(node) {
     if (node === null) {
-      return 0;
+      return -1;
     }
     return 1 + Math.max(this.height(node.left), this.height(node.right));
+  }
+
+  isBalance(node) {
+    if (node === null) {
+      return true;
+    }
+    let lh = this.height(node.left);
+    let rh = this.height(node.right);
+    if (Math.abs(lh - rh) <= 1 && this.isBalance(node.left)
+      && this.isBalance(node.right)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
