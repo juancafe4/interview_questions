@@ -27,13 +27,13 @@ let bst2 = new Node(4);
 
 bst2.right = new Node(5);
 
-console.log(isBinarySearchTree(bst.root));
-console.log(isBinarySearchTree(bst2))
+console.log(isBinarySearchTree2(bst.root));
+console.log(isBinarySearchTree2(bst2))
 
 bst3 = new Node(6);
 bst3.left = new Node(10);
 bst3.right = new Node(3);
-console.log(isBinarySearchTree(bst2));
+console.log(isBinarySearchTree2(bst2));
 // First array 
 // then to save space integer
 
@@ -63,3 +63,27 @@ function checkTree(node, last) {
   return true;
 }
 
+
+function isBinarySearchTree2(root) {
+  if (root === null) {
+    return true;
+  }
+
+  return checkTree2(root, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY);
+}
+
+function checkTree2(node, min, max) {
+  if (node === null) return true;
+  if (node.left === null && node.right !== null) return false;
+  
+  if (node.data < min || node.data > max) {
+    return false;
+  }
+  if (!checkTree(node.left, min, node.data)) {
+    return false;
+  }
+  if (!checkTree(node.right, node.data, max)) {
+    return false;
+  }
+  return true;
+}
