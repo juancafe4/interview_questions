@@ -63,7 +63,7 @@ function checkTree(node, last) {
   return true;
 }
 
-
+// O(n) space O(logn)if balanced or O(n)
 function isBinarySearchTree2(root) {
   if (root === null) {
     return true;

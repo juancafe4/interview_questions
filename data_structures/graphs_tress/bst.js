@@ -7,6 +7,7 @@ class Node {
     this.data = data;
     this.left = null;
     this.right = null;
+    this.parent = null;
   }
 }
 
@@ -28,6 +29,7 @@ module.exports = class BinaryTree {
     if (data < node.data) {
       if (node.left === null) {
         node.left = newNode;
+        node.left.parent = node;
       } else {
         this._insertNode(node.left, data);
       }
@@ -35,6 +37,7 @@ module.exports = class BinaryTree {
     else if (data > node.data) {
       if (node.right === null) {
         node.right = newNode;
+        node.right.parent = node;
       } else {
         this._insertNode(node.right, data);
       }
@@ -45,7 +48,8 @@ module.exports = class BinaryTree {
 
     if (node !== null) {
       this.inorder(node.left);
-      console.log(node.data);
+      console.log('Parent', node.parent ? node.parent.data : null);
+      console.log('Node', node.data);
       this.inorder(node.right);
     }
   }
