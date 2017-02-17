@@ -90,4 +90,17 @@ module.exports = class BinaryTree {
       return false;
     }
   }
+  getHeight(root, node) {
+    if (node === null || root === null) {
+      return -1;
+    }
+    if (root === node) {
+      return 0;
+    }
+    if (node.data < root.data) {
+      return 1 + this.getHeight(root.left, node);
+    } else {
+      return 1 + this.getHeight(root.right, node);
+    }
+  }
 }
