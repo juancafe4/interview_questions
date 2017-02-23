@@ -15,27 +15,23 @@
 
 function recursiveMultiply(num1, num2) {
   let smaller = num1 < num2 ? num1:num2;
-  let bigger = num1 > num2 ? num1:num2;
+  let bigger = num1 < num2 ? num2:num1;
   return recursiveMultiplyUtil(smaller, bigger);
 }
 
 function recursiveMultiplyUtil(smaller, bigger) {
-  if (smaller === 0) { // multiply by zero
+  // Base cases
+  if (smaller === 0) {
     return 0;
   }
-  if (smaller === 1) { // multiply by one
+  if (smaller === 1) {
     return bigger;
   }
-  let s = smaller >> 1;
-  let side1 = recursiveMultiplyUtil(s, bigger);
-  let side2 = side1;
-  if (s % 2 === 1) {
-    side2 = recursiveMultiplyUtil(smaller - s, bigger);
-  }
-  return side1 + side2;
+  // Recursive case 
+  return recursiveMultiplyUtil(smaller - 1, bigger) + bigger;
 }
 
 console.log(recursiveMultiply(5, 4));
-console.log(recursiveMultiply(3, 6));
+console.log(recursiveMultiply(13, 33));
 
 
