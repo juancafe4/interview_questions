@@ -27,8 +27,18 @@ function recursiveMultiplyUtil(smaller, bigger) {
   if (smaller === 1) {
     return bigger;
   }
-  // Recursive case 
-  return recursiveMultiplyUtil(smaller - 1, bigger) + bigger;
+  // // Recursive case 
+  // O(N) solution
+  // return recursiveMultiplyUtil(smaller - 1, bigger) + bigger;
+  // O(logn)
+  let s = smaller >> 1 // Divide by 2
+  let half = recursiveMultiplyUtil(s, bigger);
+
+  if (smaller % 2 === 0) {
+    return half + half;
+  } else {
+    return half + half + bigger;
+  }
 }
 
 console.log(recursiveMultiply(5, 4));
