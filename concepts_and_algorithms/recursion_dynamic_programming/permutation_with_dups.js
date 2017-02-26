@@ -19,7 +19,7 @@ function buildTable(str) {
 
 // Create an object or table the put the repeated characters
 // go for every character recurservly creating a permutation of each
-// one.
+// one. It is faster when is only one character because the loop.
 function permUitls(map, prefix, remainder, result) {
   if (remainder === 0) {
     result.push(prefix);
@@ -31,10 +31,15 @@ function permUitls(map, prefix, remainder, result) {
 
     if (count > 0) {
       map[key] = count - 1;
-      console.log('Prefix', prefix);
       permUitls(map, prefix + c, remainder - 1, result);
       map[key] = count;
     }
   }
 }
 perms('AABB')
+
+
+perms('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+
+perms('AAAAAAAAAB');
+
