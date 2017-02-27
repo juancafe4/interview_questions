@@ -35,8 +35,10 @@
 function  coin_change(n) {
   let denons = [25, 10, 5, 1];
   let memo = {}
-  return coin_change_util(denons, denons.length, n, memo);
-
+  
+  let total = coin_change_util(denons, denons.length, n, memo);
+  console.log(memo);
+  return total;
 }
 
 
