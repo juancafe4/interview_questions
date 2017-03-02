@@ -11,11 +11,11 @@ function selection_sort(a) {
       }
       j++;
     }
-    if (a[i] > a[index]) {
-      let temp = a[i];
-      a[i] = a[index];
-      a[index] = temp;
-    }
+    
+    let temp = a[i];
+    a[i] = a[index];
+    a[index] = temp;
+    
   }
 
   console.log(a)
