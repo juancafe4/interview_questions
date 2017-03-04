@@ -30,6 +30,15 @@ function merge(left, right) {
   return result;
 }
 
+function merge_sort(arr, start, end) {
+  if (start < end) {
+    let mid = Math.floor(start + (end - 1) / 2);
+    merge_sort(start, mid);
+    merge_sort(arr, mid + 1, end);
+    merge()
+  }
+}
+
 
 console.log(merge_sort([ 4, 3, 2, 4, 5 ]));
 console.log(merge_sort([5, 6, 2, 55, 3, 1, 999, -1]));
