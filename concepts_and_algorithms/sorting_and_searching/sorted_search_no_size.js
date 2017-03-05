@@ -35,7 +35,7 @@ function binarySearch(list, x, low, high) {
 function search(list, x) {
   let index = 0;
 
-  while (list.elementAt(index) && list.elementAt(index) < x) {
+  while (list.elementAt(index) !== undefined && list.elementAt(index) < x) {
     index = Math.pow(index, 2);
     index++;
   }
@@ -44,5 +44,10 @@ function search(list, x) {
 
 let arr1 = [-5, -1, 0, 2, 3, 5, 7, 10];
 
-let list1 = new Listy(arr1);
-console.log(search(list1, 0))
+// let list1 = new Listy(arr1);
+// console.log(search(list1, 0))
+
+
+let arr2 = [-5, -1, 0, 2, 4];
+console.log(search(new Listy(arr2), 4));
+console.log(search(new Listy(arr2), -5));
