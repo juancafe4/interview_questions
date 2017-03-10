@@ -82,19 +82,33 @@ class MinHeap {
         sortList.push(this.delete());
       }
       return sortList;
+  }
+
+  getRank(num) {
+    let count = 0;
+    while(this.arr.length) {
+      if (num >= this.delete()) {
+        count++;
+      }
     }
+
+    return count - 1;
+  }
 }
 
 let heap = new MinHeap();
 
-let list = [5, 9, 8, 6, 4, 2, 1, 10];
+let list = [5, 1, 4, 4, 5, 9, 7, 13, 3];
 
 heap.heapify(list);
 
 
-console.log(heap.arr)
+//console.log(heap.arr)
 
 // heap.delete();
 // console.log(heap.arr)
 
-console.log(heap.sort());
+//console.log(heap.sort());
+
+console.log(heap.getRank(4))
+
