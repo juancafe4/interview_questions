@@ -39,17 +39,62 @@ class MinHeap {
     }
   }
 
-  deleteMin() {
-    
-    return 
+  delete() {
+    if (this.arr.length === 1) {
+      return this.arr.pop();
+    }
+
+    let val = this.arr[0];
+    let temp = this.arr.pop();
+    this.arr[0] = temp;
+    this.shiftdown(0);
+    return val;
   }
+
+  shiftdown(index) {
+    let left = this.leftChild(index);
+    let right = this.rightChild(index);
+    let length = this.arr.length;
+
+    let smallest = index;
+    if (left < length && this.arr[left] < this.arr[index]) {
+      smallest = left;
+    }
+
+    if (right < length && this.arr[right] < this.arr[smallest]) {
+      smallest = right;
+    }
+
+    if (smallest !== index) {
+      // Swap
+      let temp = this.arr[smallest];
+
+      this.arr[smallest] = this.arr[index];
+      this.arr[index] = temp;
+      this.shiftdown(smallest)
+    }
+  }
+
+  sort() {
+      let sortList = [];
+      let len = this.arr.length;
+      for (let i = 0; i < len; i++) {
+        sortList.push(this.delete());
+      }
+      return sortList;
+    }
 }
 
 let heap = new MinHeap();
 
-let list = [3, 5, 7, 1, 4, 6, 2, 10];
+let list = [5, 9, 8, 6, 4, 2, 1, 10];
 
 heap.heapify(list);
 
 
 console.log(heap.arr)
+
+// heap.delete();
+// console.log(heap.arr)
+
+console.log(heap.sort());
